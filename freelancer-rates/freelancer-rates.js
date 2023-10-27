@@ -49,11 +49,13 @@ export function daysInBudget(budget, ratePerHour) {
  * @returns {number} the rounded up discounted rate
  */
 export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
-  let actualDiscount;
-  if (numDays >= 22) {
-  }
-  return (
-    dayRate(ratePerHour) * numDays -
-    discount * dayRate(ratePerHour) * (numDays / 22)
-  );
+  // I need to use a remainder somehow.
+  const fullMonths = Math.floor(numDays / 22);
+  const totalDiscountableMonthsCost = dayRate(ratePerHour) * 22 * fullMonths;
+  const discountedMonthRates =
+    totalDiscountableMonthsCost - totalDiscountableMonthsCost * discount;
+  const remainingFullPriceDays = numDays % 22;
+  const fullPriceDaysCost = dayRate(ratePerHour) * remainingFullPriceDays;
+
+  return Math.ceil(discountedMonthRates + fullPriceDaysCost);
 }
