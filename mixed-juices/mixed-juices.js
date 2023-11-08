@@ -43,8 +43,8 @@ export function timeToMixJuice(name) {
  */
 export function limesToCut(wedgesNeeded, limes) {
   let total = 0;
-  while (total < wedgesNeeded) {
-    for (let i = 0; i < limes.length; i++) {
+  for (let i = 0; i < limes.length; i++) {
+    while (total < wedgesNeeded) {
       switch (limes[i]) {
         case "small":
           total += 6;
@@ -60,6 +60,9 @@ export function limesToCut(wedgesNeeded, limes) {
   }
   return total;
 }
+
+// This doesn't work because the for loop is continuing even if the total is greater than wedgesNeeded.
+// maybe the while loop needs to be inside the for loop.
 
 /**
  * Determines which juices still need to be prepared after the end of the shift.
