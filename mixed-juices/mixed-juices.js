@@ -33,8 +33,6 @@ export function timeToMixJuice(name) {
   return time;
 }
 
-console.log("green:", timeToMixJuice("Green Garden"));
-
 /**
  * Calculates the number of limes that need to be cut
  * to reach a certain supply.
@@ -44,7 +42,23 @@ console.log("green:", timeToMixJuice("Green Garden"));
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
-  throw new Error("Please implement the limesToCut function");
+  let total = 0;
+  while (total < wedgesNeeded) {
+    for (let i = 0; i < limes.length; i++) {
+      switch (limes[i]) {
+        case "small":
+          total += 6;
+          break;
+        case "medium":
+          total += 8;
+          break;
+        case "large":
+          total += 10;
+          break;
+      }
+    }
+  }
+  return total;
 }
 
 /**
