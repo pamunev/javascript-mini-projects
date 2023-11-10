@@ -42,27 +42,51 @@ export function timeToMixJuice(name) {
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
-  let total = 0;
-  for (let i = 0; i < limes.length; i++) {
-    while (total < wedgesNeeded) {
+  let totalWedges = 0;
+  let totalLimes = 0;
+
+  while (totalWedges < wedgesNeeded && totalLimes <= limes.length - 1) {
+    for (let i = 0; i < limes.length && totalWedges < wedgesNeeded; i++) {
       switch (limes[i]) {
         case "small":
-          total += 6;
+          totalWedges += 6;
+          totalLimes += 1;
           break;
         case "medium":
-          total += 8;
+          totalWedges += 8;
+          totalLimes += 1;
           break;
         case "large":
-          total += 10;
+          totalWedges += 10;
+          totalLimes += 1;
           break;
       }
+      console.log(
+        "total lime count:",
+        totalLimes,
+        "total wedges count:",
+        totalWedges,
+        "i equals:",
+        i
+      );
     }
   }
-  return total;
+  return totalLimes;
 }
 
-// This doesn't work because the for loop is continuing even if the total is greater than wedgesNeeded.
-// maybe the while loop needs to be inside the for loop.
+console.log(
+  "testing",
+  limesToCut(25, ["small", "medium", "large", "large", "large", "small"])
+);
+
+// Why is it not stopping the count after it reaches the wedgesNeeded number? It's continuing to loop through the
+// array. The for loop.
+// Okay, I added another condition to the for loop next to i < limes.length, and now all the tests are passing.
+// Maybe there's a way to clean up the code, because repeating the logic in the While loop and the for loop
+// Isn't very DRY of me. I'll do it tomorrow.
+// Maybe there's a way for me to do this without the for loop, since they want me to use a while loop.
+// At this point, I don't even need the while loop, I think.
+// I guess at the end of the while loop I could add 1 to the index, and that would do it.
 
 /**
  * Determines which juices still need to be prepared after the end of the shift.
