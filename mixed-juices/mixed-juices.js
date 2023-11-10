@@ -82,7 +82,6 @@ export function remainingOrders(timeLeft, orders) {
   // I could do this easily with a for loop, but I'm going to try it with a while loop.
   // Maybe it's a while loop within the for loop. Nope.
 
-  let remainingTime = timeLeft;
   let ordersLeft = [];
   let i = 0;
 
@@ -92,9 +91,9 @@ export function remainingOrders(timeLeft, orders) {
   }*/
 
   while (i < orders.length) {
-    switch (remainingTime > 0) {
+    switch (timeLeft > 0) {
       case true:
-        remainingTime - timeToMixJuice(orders[i]);
+        timeLeft -= timeToMixJuice(orders[i]);
         i += 1;
         break;
       case false:
@@ -104,7 +103,7 @@ export function remainingOrders(timeLeft, orders) {
     }
     console.log(
       "remaining time:",
-      remainingTime,
+      timeLeft,
       "ordersLeft:",
       ordersLeft,
       "i equals:",
@@ -130,3 +129,5 @@ console.log("remaining some:", remainingOrders(10, []));
 
 // It's not decreasing the timeLeft.
 // okay, let's try another approach. Let's try adding it to time elapsed, then comparing the two.
+
+// Whoops. Never mind. I was trying to change timeLeft by just subtracting, when I actually needed to redeclare the variable.
