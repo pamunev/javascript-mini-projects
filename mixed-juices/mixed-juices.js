@@ -44,7 +44,6 @@ export function timeToMixJuice(name) {
 export function limesToCut(wedgesNeeded, limes) {
   let totalWedges = 0;
   let totalLimes = 0;
-  console.log("wedges needed:", wedgesNeeded);
   let i = 0;
 
   while (totalWedges < wedgesNeeded && i < limes.length) {
@@ -62,32 +61,10 @@ export function limesToCut(wedgesNeeded, limes) {
         totalLimes += 1;
         break;
     }
-    console.log(
-      "total lime count:",
-      totalLimes,
-      "total wedges count:",
-      totalWedges,
-      "i equals:",
-      i
-    );
     i += 1;
   }
   return totalLimes;
 }
-
-console.log(
-  "testing",
-  limesToCut(25, ["small", "medium", "large", "large", "large", "small"])
-);
-
-// Why is it not stopping the count after it reaches the wedgesNeeded number? It's continuing to loop through the
-// array. The for loop.
-// Okay, I added another condition to the for loop next to i < limes.length, and now all the tests are passing.
-// Maybe there's a way to clean up the code, because repeating the logic in the While loop and the for loop
-// Isn't very DRY of me. I'll do it tomorrow.
-// Maybe there's a way for me to do this without the for loop, since they want me to use a while loop.
-// At this point, I don't even need the while loop, I think.
-// I guess at the end of the while loop I could add 1 to the index, and that would do it.
 
 /**
  * Determines which juices still need to be prepared after the end of the shift.
@@ -97,5 +74,59 @@ console.log(
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  throw new Error("Please implement the remainingOrders function");
+  // a while loop, while there is time left, and then calls timeToMixJuice function on i.
+  // we subtract the timeToMixJuice minutes from timeLeft.
+  // then, if the time is up, we still cycle through the array (how?), but add them to an empty array.
+  // then return array.
+
+  // I could do this easily with a for loop, but I'm going to try it with a while loop.
+  // Maybe it's a while loop within the for loop. Nope.
+
+  let remainingTime = timeLeft;
+  let ordersLeft = [];
+  let i = 0;
+
+  /*while (timeLeft > 0) {
+    timeLeft - timeToMixJuice(orders[i])
+    i += 1
+  }*/
+
+  while (i < orders.length) {
+    switch (remainingTime > 0) {
+      case true:
+        remainingTime - timeToMixJuice(orders[i]);
+        i += 1;
+        break;
+      case false:
+        ordersLeft.push(orders[i]);
+        i += 1;
+        break;
+    }
+    console.log(
+      "remaining time:",
+      remainingTime,
+      "ordersLeft:",
+      ordersLeft,
+      "i equals:",
+      i
+    );
+  }
+
+  return ordersLeft;
 }
+
+console.log(
+  "remaining orders none:",
+  remainingOrders(5, [
+    "All or Nothing",
+    "Pure Strawberry Joy",
+    "Tropical Island",
+    "Tropical Island",
+    "All or Nothing",
+  ])
+);
+
+console.log("remaining some:", remainingOrders(10, []));
+
+// It's not decreasing the timeLeft.
+// okay, let's try another approach. Let's try adding it to time elapsed, then comparing the two.
