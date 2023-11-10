@@ -45,8 +45,9 @@ export function limesToCut(wedgesNeeded, limes) {
   let totalWedges = 0;
   let totalLimes = 0;
   console.log("wedges needed:", wedgesNeeded);
+  let i = 0;
 
-  for (let i = 0; i < limes.length && totalWedges < wedgesNeeded; i++) {
+  while (totalWedges < wedgesNeeded && i < limes.length) {
     switch (limes[i]) {
       case "small":
         totalWedges += 6;
@@ -69,6 +70,7 @@ export function limesToCut(wedgesNeeded, limes) {
       "i equals:",
       i
     );
+    i += 1;
   }
   return totalLimes;
 }
