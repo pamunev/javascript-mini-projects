@@ -74,21 +74,8 @@ export function limesToCut(wedgesNeeded, limes) {
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  // a while loop, while there is time left, and then calls timeToMixJuice function on i.
-  // we subtract the timeToMixJuice minutes from timeLeft.
-  // then, if the time is up, we still cycle through the array (how?), but add them to an empty array.
-  // then return array.
-
-  // I could do this easily with a for loop, but I'm going to try it with a while loop.
-  // Maybe it's a while loop within the for loop. Nope.
-
   let ordersLeft = [];
   let i = 0;
-
-  /*while (timeLeft > 0) {
-    timeLeft - timeToMixJuice(orders[i])
-    i += 1
-  }*/
 
   while (i < orders.length) {
     switch (timeLeft > 0) {
@@ -101,31 +88,10 @@ export function remainingOrders(timeLeft, orders) {
         i += 1;
         break;
     }
-    console.log(
-      "remaining time:",
-      timeLeft,
-      "ordersLeft:",
-      ordersLeft,
-      "i equals:",
-      i
-    );
   }
 
   return ordersLeft;
 }
-
-console.log(
-  "remaining orders none:",
-  remainingOrders(5, [
-    "All or Nothing",
-    "Pure Strawberry Joy",
-    "Tropical Island",
-    "Tropical Island",
-    "All or Nothing",
-  ])
-);
-
-console.log("remaining some:", remainingOrders(10, []));
 
 // It's not decreasing the timeLeft.
 // okay, let's try another approach. Let's try adding it to time elapsed, then comparing the two.
