@@ -33,7 +33,10 @@ export function addPlayer(scoreBoard, player, score) {
  * @returns {Record<string, number>} updated score board
  */
 export function removePlayer(scoreBoard, player) {
-  throw new Error("Please implement the removePlayer function");
+  if (scoreBoard.hasOwnProperty(player)) {
+    delete scoreBoard[player];
+  }
+  return scoreBoard;
 }
 
 /**
@@ -45,7 +48,8 @@ export function removePlayer(scoreBoard, player) {
  * @returns {Record<string, number>} updated score board
  */
 export function updateScore(scoreBoard, player, points) {
-  throw new Error("Please implement the updateScore function");
+  scoreBoard[player] += points;
+  return scoreBoard;
 }
 
 /**
@@ -55,7 +59,10 @@ export function updateScore(scoreBoard, player, points) {
  * @returns {Record<string, number>} updated score board
  */
 export function applyMondayBonus(scoreBoard) {
-  throw new Error("Please implement the applyMondayBonus function");
+  for (let player in scoreBoard) {
+    scoreBoard[player] += 100;
+  }
+  return scoreBoard;
 }
 
 /**
@@ -65,5 +72,9 @@ export function applyMondayBonus(scoreBoard) {
  * @returns {number} normalized score
  */
 export function normalizeScore(params) {
-  throw new Error("Please implement the normalizeScore function");
+  // How do I pass the score into the function that's the value of the normalizeFunction key?
+  console.log("params:", params);
+  const { score } = params;
+  const normalizedScore = params.normalizeFunction(score);
+  return normalizedScore;
 }
