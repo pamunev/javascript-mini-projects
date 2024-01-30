@@ -72,8 +72,6 @@ export function applyMondayBonus(scoreBoard) {
  * @returns {number} normalized score
  */
 export function normalizeScore(params) {
-  // How do I pass the score into the function that's the value of the normalizeFunction key?
-  console.log("params:", params);
   const { score } = params;
   const normalizedScore = params.normalizeFunction(score);
   return normalizedScore;
