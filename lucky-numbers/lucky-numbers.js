@@ -12,12 +12,12 @@ export function twoSum(array1, array2) {
   console.log("string1:", string1);
   const string2 = String(array2);*/
   const string1 = array1.join("");
-  console.log("string1:", string1);
+
   const string2 = array2.join("");
   const number1 = Number(string1);
-  console.log("numb1:", number1);
+
   const number2 = Number(string2);
-  console.log("num2:", number2);
+
   const total = number1 + number2;
   return total;
 }
@@ -30,9 +30,7 @@ export function twoSum(array1, array2) {
  */
 export function luckyNumber(value) {
   const numString = String(value);
-  const numArray = numString.split("");
-  const reversedArray = numArray.reverse();
-  const reversedString = reversedArray.join("");
+  const reversedString = numString.split("").reverse().join("");
   const reversedNum = Number(reversedString);
   return value === reversedNum;
 }
@@ -45,5 +43,11 @@ export function luckyNumber(value) {
  * @returns {string} error message
  */
 export function errorMessage(input) {
-  throw new Error("Implement the errorMessage function");
+  if (!input) {
+    return `Required field`;
+  }
+  if (!Number(input)) {
+    return `Must be a number besides 0`;
+  }
+  return ``;
 }
