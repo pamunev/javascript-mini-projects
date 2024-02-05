@@ -40,10 +40,28 @@ export function quantities(layers) {
   }
   let noodleGramsNeeded = noodleLayers * 50;
   let sauceLitersNeeded = sauceLayers * 0.2;
-  console.log("noodLay:", noodleLayers);
-  console.log("noodgrams:", noodleGramsNeeded);
+
   return { noodles: noodleGramsNeeded, sauce: sauceLitersNeeded };
 }
 
-const test = quantities(["noodles", "noodles", "sauce"]);
-console.log("test:", test);
+export function addSecretIngredient(friendsList, myList) {
+  const secretIngredient = friendsList[friendsList.length - 1];
+  myList = myList.push(secretIngredient);
+}
+
+export function scaleRecipe(recipeForTwo, desiredPortions) {
+  const recipeForOne = {
+    noodles: recipeForTwo.noodles / 2,
+    sauce: recipeForTwo.sauce / 2,
+    mozzarella: recipeForTwo.mozzarella / 2,
+    meat: recipeForTwo.meat / 2,
+  };
+  console.log("forOne:", recipeForOne);
+  console.log("forTwo:", recipeForTwo);
+  return {
+    noodles: recipeForOne.noodles * desiredPortions,
+    sauce: recipeForOne.sauce * desiredPortions,
+    mozzarella: recipeForOne.mozzarella * desiredPortions,
+    meat: recipeForOne.meat * desiredPortions,
+  };
+}
