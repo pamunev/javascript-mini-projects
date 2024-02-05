@@ -12,12 +12,9 @@ export function twoSum(array1, array2) {
   console.log("string1:", string1);
   const string2 = String(array2);*/
   const string1 = array1.join("");
-
   const string2 = array2.join("");
   const number1 = Number(string1);
-
   const number2 = Number(string2);
-
   const total = number1 + number2;
   return total;
 }
