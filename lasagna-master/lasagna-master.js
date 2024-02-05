@@ -50,18 +50,10 @@ export function addSecretIngredient(friendsList, myList) {
 }
 
 export function scaleRecipe(recipeForTwo, desiredPortions) {
-  const recipeForOne = {
-    noodles: recipeForTwo.noodles / 2,
-    sauce: recipeForTwo.sauce / 2,
-    mozzarella: recipeForTwo.mozzarella / 2,
-    meat: recipeForTwo.meat / 2,
-  };
-  console.log("forOne:", recipeForOne);
-  console.log("forTwo:", recipeForTwo);
-  return {
-    noodles: recipeForOne.noodles * desiredPortions,
-    sauce: recipeForOne.sauce * desiredPortions,
-    mozzarella: recipeForOne.mozzarella * desiredPortions,
-    meat: recipeForOne.meat * desiredPortions,
-  };
+  const scaled = {};
+  for (let ingredient in recipeForTwo) {
+    scaled[ingredient] = (recipeForTwo[ingredient] / 2) * desiredPortions;
+  }
+  console.log("scaled:", scaled);
+  return scaled;
 }
