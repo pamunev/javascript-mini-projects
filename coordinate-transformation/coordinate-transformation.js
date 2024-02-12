@@ -60,7 +60,12 @@ export function composeTransform(f, g) {
   // f and g are functions. They each output a value.
   console.log("f:", f);
   console.log("g:", g);
-  return g(f[0], f[1]);
+  function composition(x, y) {
+    const intermediateResult = f(x, y);
+    return g(intermediateResult[0], intermediateResult[1]);
+  }
+  return composition;
+  //return g(f[0], f[1]);
 }
 
 /**
@@ -73,5 +78,18 @@ export function composeTransform(f, g) {
  *  if the arguments are the same on subsequent calls, or compute a new result if they are different.
  */
 export function memoizeTransform(f) {
-  throw new Error("Implement the memoizeTransform function");
+  // f is a function.
+  console.log("f:", f);
+  let lastX;
+  let lastY;
+  let lastResult;
+  function memoized(x, y) {
+    if (x !== lastX || y !== lastY) {
+      lastX = x;
+      lastY = y;
+      lastResult = f(x, y);
+    }
+    return lastResult;
+  }
+  return memoized;
 }
