@@ -54,22 +54,14 @@ export function middleTwo(deck) {
 
 export function sandwichTrick(deck) {
   let arrayRemoved = [];
-  console.log("initDeck:", deck);
   const removedFirst = deck.splice(0, 1)[0];
   arrayRemoved.push(removedFirst);
   const lastIndex = deck.length - 1;
-  console.log("deckAfterFirstRemoved:", deck);
   const removedLast = deck.splice(lastIndex, 1)[0];
-  console.log("remLast:", removedLast);
   arrayRemoved.push(removedLast);
-  console.log("arrayRemoved:", arrayRemoved);
   const reversedArray = arrayRemoved.reverse();
-  console.log("reversedArray:", reversedArray);
   const halfwayPointInArray = deck.length / 2;
-  console.log("deckBeforeFinal:", deck);
-  console.log("halfway:", halfwayPointInArray);
   deck.splice(halfwayPointInArray, 0, reversedArray[0], reversedArray[1]);
-  console.log("finalDeck:", deck);
   return deck;
 }
 
@@ -96,7 +88,7 @@ const startingIndex = deck.length / 2 - 1;
  * @returns {number[]} deck with only 2s
  */
 export function twoIsSpecial(deck) {
-  throw new Error("Implement the twoIsSpecial function");
+  return deck.filter((card) => card === 2);
 }
 
 /**
@@ -107,7 +99,15 @@ export function twoIsSpecial(deck) {
  * @returns {number[]} ordered deck
  */
 export function perfectlyOrdered(deck) {
-  throw new Error("Implement the perfectlyOrdered function");
+  return deck.sort((a, b) => {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  });
 }
 
 /**
@@ -118,5 +118,5 @@ export function perfectlyOrdered(deck) {
  * @returns {number[]} reordered deck
  */
 export function reorder(deck) {
-  throw new Error("Implement the reorder function");
+  return deck.reverse();
 }
