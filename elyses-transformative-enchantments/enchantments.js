@@ -53,8 +53,40 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-  throw new Error("Implement the sandwichTrick function");
+  let arrayRemoved = [];
+  console.log("initDeck:", deck);
+  const removedFirst = deck.splice(0, 1)[0];
+  arrayRemoved.push(removedFirst);
+  const lastIndex = deck.length - 1;
+  console.log("deckAfterFirstRemoved:", deck);
+  const removedLast = deck.splice(lastIndex, 1)[0];
+  console.log("remLast:", removedLast);
+  arrayRemoved.push(removedLast);
+  console.log("arrayRemoved:", arrayRemoved);
+  const reversedArray = arrayRemoved.reverse();
+  console.log("reversedArray:", reversedArray);
+  const halfwayPointInArray = deck.length / 2;
+  console.log("deckBeforeFinal:", deck);
+  console.log("halfway:", halfwayPointInArray);
+  deck.splice(halfwayPointInArray, 0, reversedArray[0], reversedArray[1]);
+  console.log("finalDeck:", deck);
+  return deck;
 }
+
+/*
+What I did here was switch the middle two cards in the deck. 
+
+const startingIndex = deck.length / 2 - 1;
+  console.log("initDeck:", deck);
+  const removed = deck.splice(startingIndex, 2);
+  console.log("deck:", deck);
+  console.log("removed:", removed);
+  const reversedCards = removed.reverse();
+  console.log("reversed:", reversedCards);
+  deck.splice(startingIndex, 0, reversedCards[0], reversedCards[1]);
+  console.log("newArray:", deck);
+  return deck;
+*/
 
 /**
  * Removes every card from the deck except 2s.
